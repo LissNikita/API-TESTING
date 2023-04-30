@@ -9,19 +9,19 @@ import io.restassured.specification.ResponseSpecification;
 
 public class Specification {
 
-    public static RequestSpecification requestSpecification (String URL){
+    public static RequestSpecification requestSpecification(String URL) {
         return new RequestSpecBuilder()
                 .setBaseUri(URL).setContentType(ContentType.JSON)
                 .build();
     }
 
-    public static ResponseSpecification responseSpecificationAny(int expected){
+    public static ResponseSpecification responseSpecificationAny(int expected) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(expected)
                 .build();
     }
 
-    public static void installSpecification(RequestSpecification requestSpecification, ResponseSpecification responseSpecification){
+    public static void installSpecification(RequestSpecification requestSpecification, ResponseSpecification responseSpecification) {
         RestAssured.requestSpecification = requestSpecification;
         RestAssured.responseSpecification = responseSpecification;
 

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/drago/IdeaProjects/testcasewithAPI/src/test">
-        <classes/>
+
+    <test name="TestApi">
+
+        <parameter name="id" value="99"/>
+        <parameter name="userId" value="10"/>
+        <parameter name="newId" value="101"/>
+        <parameter name="newUserId" value="1"/>
+
+        <classes>
+            <class name="tests.TestClassApi"/>
+        </classes>
+
     </test>
 </suite>

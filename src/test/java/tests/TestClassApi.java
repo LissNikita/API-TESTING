@@ -6,6 +6,8 @@ import io.restassured.http.ContentType;
 import models.Post;
 import models.User;
 import org.testng.Assert;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import utils.PropertyReader;
 import utils.Specification;
@@ -41,10 +43,9 @@ public class TestClassApi {
     }
 
     @Test
-    public void check99id() {
+    @Parameters({"id", "userId"})
+    public void check99id(@Optional("99") Integer id, @Optional("10") Integer userId) {
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
-        Integer id = 99;
-        Integer userId = 10;
         Post post99 = given()
                 .when()
                 .get("posts/99")
@@ -62,10 +63,9 @@ public class TestClassApi {
     }
 
     @Test
-    public void checkNotFoundExeption() {
+    public void post150() {
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(404));
-
-        Post post150 = given()
+        given()
                 .when()
                 .get("posts/150")
                 .then()
@@ -76,11 +76,9 @@ public class TestClassApi {
     }
 
     @Test
-    public void checkPostRequestWithUserId1() {
+    @Parameters({"newId", "newUserId"})
+    public void checkPostRequestWithUserId1(@Optional("101") Integer newId, @Optional("1") Integer newUserId) {
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(201));
-        Integer userId = 1;//<----- expected condition
-        Integer id = 101; //<----- expected condition
-
         Post post = given()
                 .body(new Post(1, "LinkinPark", "Body is power"))
                 .when()
@@ -93,8 +91,8 @@ public class TestClassApi {
 
         Assert.assertEquals(post.getTitle(), "LinkinPark");
         Assert.assertEquals(post.getBody(), "Body is power");
-        Assert.assertEquals(userId, post.getUserId());
-        Assert.assertEquals(id, post.getId());
+        Assert.assertEquals(newUserId, post.getUserId());
+        Assert.assertEquals(newId, post.getId());
     }
 
     @Test
