@@ -1,8 +1,10 @@
 package models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Post {
 
     private Integer userId;
@@ -17,8 +19,5 @@ public class Post {
         this.userId = userId;
         this.title = title;
         this.body = body;
-    }
-
-    public Post() {
     }
 }
