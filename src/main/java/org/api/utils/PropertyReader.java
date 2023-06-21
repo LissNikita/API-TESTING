@@ -1,4 +1,4 @@
-package utils;
+package org.api.utils;
 
 import java.io.*;
 import java.util.NoSuchElementException;

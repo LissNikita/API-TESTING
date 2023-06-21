@@ -1,4 +1,4 @@
-package models;
+package org.api.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

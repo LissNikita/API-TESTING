@@ -3,14 +3,14 @@ package tests;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
-import models.Post;
-import models.User;
+import org.api.models.Post;
+import org.api.models.User;
 import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import utils.PropertyReader;
-import utils.Specification;
+import org.api.utils.PropertyReader;
+import org.api.utils.Specification;
 
 import java.io.File;
 import java.io.IOException;
@@ -125,7 +125,7 @@ public class TestClassApi {
                 .as(User.class);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File("src/test/resources/user5.json");
+        File file = new File("src/test/resources/test-data/user5.json");
         User user5 = objectMapper.readValue(file, User.class);
         Assert.assertEquals(user, user5, "User with id=5 is not as expected");
     }
