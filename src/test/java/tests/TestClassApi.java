@@ -114,7 +114,7 @@ public class TestClassApi {
                 });
 
         ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File("src/test/resources/user5.json");
+        File file = new File("src/test/resources/test-data/user5.json");
         User user5 = objectMapper.readValue(file, User.class);
         Assert.assertEquals(users.get(4), user5, "User with id=5 is not as expected");
     }

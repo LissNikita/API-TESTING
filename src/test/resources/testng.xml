@@ -10,7 +10,16 @@
         <parameter name="newUserId" value="1"/>
 
         <classes>
-            <class name="tests.TestClassApi"/>
+            <class name="tests.TestClassApi">
+                <methods>
+                    <include name="getAllPostsFirstTest"/>
+                    <include name="check99id"/>
+                    <include name="post150"/>
+                    <include name="checkPostRequestWithUserId1"/>
+                    <include name="checkUserId5"/>
+                    <include name="compareUser5WithPreviousStep"/>
+                </methods>
+            </class>       
         </classes>
 
     </test>
