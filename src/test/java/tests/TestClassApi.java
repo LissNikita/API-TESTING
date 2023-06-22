@@ -24,7 +24,7 @@ import static io.restassured.RestAssured.given;
 public class TestClassApi {
     private final static String URL = PropertyReader.getPropertyValue("URL", "src/main/java/resources/totalInfo.properties");
 
-    @Test
+    @Test(description = "Get all posts requests")
     public void getAllPostsFirstTest() {
         log.info("Post all request");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
@@ -44,7 +44,7 @@ public class TestClassApi {
         Assert.assertEquals(id, idSorted);
     }
 
-    @Test
+    @Test(description = "Check 99id")
     @Parameters({"id", "userId"})
     public void check99id(@Optional("99") Integer id, @Optional("10") Integer userId) {
         log.info("Check 99id");
@@ -65,7 +65,7 @@ public class TestClassApi {
         Assert.assertFalse(post99.getTitle().isEmpty());
     }
 
-    @Test
+    @Test(description = "Post request 150")
     public void post150() {
         log.info("Post request 150");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(404));
@@ -79,7 +79,7 @@ public class TestClassApi {
                 .as(Post.class);
     }
 
-    @Test
+    @Test(description = "Post request 150")
     @Parameters({"newId", "newUserId"})
     public void checkPostRequestWithUserId1(@Optional("101") Integer newId, @Optional("1") Integer newUserId) {
         log.info("Check post request with user id1");
@@ -100,7 +100,7 @@ public class TestClassApi {
         Assert.assertEquals(newId, post.getId());
     }
 
-    @Test
+    @Test(description = "Check user id5")
     public void checkUserId5() throws IOException {
         log.info("Check user id5");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
@@ -119,7 +119,7 @@ public class TestClassApi {
         Assert.assertEquals(users.get(4), user5, "User with id=5 is not as expected");
     }
 
-    @Test
+    @Test(description = "Compare user 5 with previous step")
     public void compareUser5WithPreviousStep() throws IOException {
         log.info("Compare user 5 with previous step");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
