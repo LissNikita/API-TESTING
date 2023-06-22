@@ -3,6 +3,7 @@ package tests;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
+import lombok.extern.log4j.Log4j2;
 import org.api.models.Post;
 import org.api.models.User;
 import org.testng.Assert;
@@ -19,12 +20,13 @@ import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
 
-
+@Log4j2
 public class TestClassApi {
     private final static String URL = PropertyReader.getPropertyValue("URL", "src/test/resources/totalInfo.properties");
 
     @Test
     public void getAllPostsFirstTest() {
+        log.info("Post all request");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
         List<Post> firstTaskGetAllPosts = given()
                 .when()
@@ -45,6 +47,7 @@ public class TestClassApi {
     @Test
     @Parameters({"id", "userId"})
     public void check99id(@Optional("99") Integer id, @Optional("10") Integer userId) {
+        log.info("Check 99id");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
         Post post99 = given()
                 .when()
@@ -64,6 +67,7 @@ public class TestClassApi {
 
     @Test
     public void post150() {
+        log.info("Post request 150");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(404));
         given()
                 .when()
@@ -78,6 +82,7 @@ public class TestClassApi {
     @Test
     @Parameters({"newId", "newUserId"})
     public void checkPostRequestWithUserId1(@Optional("101") Integer newId, @Optional("1") Integer newUserId) {
+        log.info("Check post request with user id1");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(201));
         Post post = given()
                 .body(new Post(1, "LinkinPark", "Body is power"))
@@ -97,6 +102,7 @@ public class TestClassApi {
 
     @Test
     public void checkUserId5() throws IOException {
+        log.info("Check user id5");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
         List<User> users = given()
                 .when()
@@ -115,6 +121,7 @@ public class TestClassApi {
 
     @Test
     public void compareUser5WithPreviousStep() throws IOException {
+        log.info("Compare user 5 with previous step");
         Specification.installSpecification(Specification.requestSpecification(URL), Specification.responseSpecificationAny(200));
 
         User user = given()
