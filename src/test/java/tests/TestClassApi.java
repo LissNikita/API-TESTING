@@ -22,7 +22,7 @@ import static io.restassured.RestAssured.given;
 
 @Log4j2
 public class TestClassApi {
-    private final static String URL = PropertyReader.getPropertyValue("URL", "src/test/resources/totalInfo.properties");
+    private final static String URL = PropertyReader.getPropertyValue("URL", "src/main/java/resources/totalInfo.properties");
 
     @Test
     public void getAllPostsFirstTest() {
